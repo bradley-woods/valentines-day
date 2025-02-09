@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1 class="header_text">Yay!</h1>
+      </div>
+      <div class="gif_container">
+        <div class="tenor-gif-embed" data-postid="23625303" data-share-method="host" data-aspect-ratio="1" data-width="80%">
+          <a href="https://tenor.com/view/cat-jump-happy-jumping-for-joy-jumping-gif-23625303"></a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+      </div>
+      <div>
+        <h2 class="header_text">Let's set a date</h2>
+      </div>
+      <!-- Insert the calendar code here -->
+      <table id="calendar">
+        <thead>
+          <tr>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            <th>Sun</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Calendar content will be generated here using JavaScript -->
+        </tbody>
+      </table>
+      <div id="savedDatesContainer"></div>
+    </div>
+    <script>
+      // When the page loads, read the selected option from the URL query parameters.
+      document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const selectedOption = params.get('option') || '';
+        console.log("Selected option:", selectedOption); // For debugging
+      
+        var calendarBody = document.querySelector('#calendar tbody');
+      
+        // Generate the calendar for the current month
+        generateCalendar(new Date());
+      
+        function generateCalendar(date) {
+          // Get the first and last days of the month
+          var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+          var lastDay  = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+          var currentDate = new Date(firstDay);
+      
+          // Clear any previous calendar content
+          calendarBody.innerHTML = '';
+      
+          // Determine the weekday of the first day (0 = Sunday, 1 = Monday, etc.)
+          var dayIndex = firstDay.getDay();
+          // Adjust: if Sunday (0), treat it as 7 so that Monday is first.
+          if (dayIndex === 0) dayIndex = 7;
+      
+          // Create the first row and add blank cells until the first day
+          var row = document.createElement('tr');
+          for (var i = 1; i < dayIndex; i++) {
+            var emptyCell = document.createElement('td');
+            row.appendChild(emptyCell);
+          }
+          // Fill the rest of the first week
+          for (var i = dayIndex; i <= 7; i++) {
+            if (currentDate.getMonth() === date.getMonth() && currentDate <= lastDay) {
+              var cell = document.createElement('td');
+              cell.textContent = currentDate.getDate();
+              cell.setAttribute('data-date', currentDate.toISOString().split('T')[0]);
+              cell.addEventListener('click', function() {
+                createCalendarEvent(this.getAttribute('data-date'));
+              });
+              row.appendChild(cell);
+              currentDate.setDate(currentDate.getDate() + 1);
+            }
+          }
+          calendarBody.appendChild(row);
+      
+          // Create additional rows until the end of the month
+          while (currentDate <= lastDay) {
+            var row = document.createElement('tr');
+            for (var i = 0; i < 7; i++) {
+              var cell = document.createElement('td');
+              if (currentDate.getMonth() === date.getMonth() && currentDate <= lastDay) {
+                cell.textContent = currentDate.getDate();
+                cell.setAttribute('data-date', currentDate.toISOString().split('T')[0]);
+                cell.addEventListener('click', function() {
+                  createCalendarEvent(this.getAttribute('data-date'));
+                });
+                currentDate.setDate(currentDate.getDate() + 1);
+              }
+              row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
+          }
+        }
+      
+        function createCalendarEvent(selectedDate) {
+          // Create a Date object from the selected date string (format: YYYY-MM-DD)
+          var dateObj = new Date(selectedDate);
+      
+          // Format the start date as YYYYMMDD (for an all‑day event)
+          var startYear  = dateObj.getFullYear();
+          var startMonth = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+          var startDay   = dateObj.getDate().toString().padStart(2, '0');
+          var start      = '' + startYear + startMonth + startDay;
+      
+          // For an all‑day event, the end date is the day after the selected date.
+          dateObj.setDate(dateObj.getDate() + 1);
+          var endYear  = dateObj.getFullYear();
+          var endMonth = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+          var endDay   = dateObj.getDate().toString().padStart(2, '0');
+          var end      = '' + endYear + endMonth + endDay;
+      
+          // Determine the location based on the selected option.
+          // Customize the addresses as needed.
+          var location = '';
+          if (selectedOption === 'movie') {
+            location = "Vue Cinema, Glasgow Fort Shopping Park, Glasgow G34 9DL";
+          } else if (selectedOption === 'pottery') {
+            location = "Firepit & Kiln, 6 Springfield Quay, Kinning Park, Glasgow G5 8NP";
+          }
+      
+          // Build the Google Calendar event URL.
+          var url = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+                    "&text=Gmail+Calendar+Meet" +
+                    "&dates=" + start + "/" + end +
+                    "&location=" + encodeURIComponent(location);
+      
+          // Redirect to Google Calendar's event creation page.
+          window.location.href = url;
+        }
+      });
+      </script>
+  </body>
+</html>
