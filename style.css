@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(rgb(235, 114, 218), rgb(71, 150, 229));
+    background: linear-gradient(#ffffff, #ffffff);
   }
   
   #noButton {
@@ -20,17 +20,17 @@ body {
   }
   
   .header_text {
-    font-family: "Nunito";
+    font-family: "Tahoma";
     font-size: 50px;
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #c00a34;
   }
   
   .text {
-    font-family: "Nunito";
+    font-family: "Tahoma";
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -49,7 +49,7 @@ body {
   }
   
   .btn {
-    background-color: #0abac0;
+    background-color: #c00a34;
     color: white;
     font-weight: 600;
     padding: 15px 32px;
@@ -89,6 +89,7 @@ body {
   
   /* New styles for the calendar */
   #calendar {
+    font-family: "Tahoma";
     margin-top: 30px;
     border-collapse: collapse;
     width: 300px;
@@ -101,7 +102,7 @@ body {
   }
   
   #calendar th {
-    background-color: #1d97e9;
+    background-color: #e46b85;
     color: white;
   }
   
