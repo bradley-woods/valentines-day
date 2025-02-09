@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <title>
+    Date Idea
+  </title>
   <meta charset="UTF-8">
-  <title>Select Date Idea</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Optional basic styles */
-    body { font-family: Arial, sans-serif; text-align: center; padding: 2em; }
-    .container { max-width: 600px; margin: 0 auto; }
-    .options button {
-      font-size: 1.2em;
-      margin: 1em;
-      padding: 0.5em 1em;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script async src="./script.js"></script>
 </head>
+
 <body>
-  <div class="container">
-    <h1 class="header_text">Select Your Date Idea</h1>
-    <div class="options">
-      <button class="btn" onclick="selectOption('pottery')">Pottery</button>
-      <button class="btn" onclick="selectOption('movie')">Movie</button>
+  <div>
+
+    <div>
+      <h1>
+        Choose a date idea:
+      </h1>
     </div>
+
+    <div class="buttons">
+      <button onclick="selectOption('pottery')">
+        Pottery
+      </button>
+      <button onclick="selectOption('movie')">
+        Movie
+      </button>
+    </div>
+
   </div>
-  <script>
-    function selectOption(option) {
-      // Navigate to the calendar page with the selected option as a query parameter
-      window.location.href = '/valentines-day/date.html?option=' + option;
-    }
-  </script>
 </body>
+
 </html>
