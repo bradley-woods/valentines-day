@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div>
-        <h1 class="header_text">Will you be my valentine?</h1>
-      </div>
-      <div class="gif_container">
-        <div class="tenor-gif-embed" data-postid="13441992" data-share-method="host" data-aspect-ratio="1.43231" data-width="100%">
-            <a href="https://tenor.com/view/happy-valentines-day-my-love-anime-girl-gift-gif-13441992"></a>
-        </div>
-        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-      </div>
-      <div class="buttons">
-        <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-        <button
-          class="btn"
-          id="noButton"
-          onmouseover="moveButton()"
-          onclick="moveButton()"
-        >
-          No
-        </button>
-        <script>
-          function nextPage() {
-            window.location.href = "/valentines-day/idea.html";
-          }
 
-          function moveButton() {
-            var x =
-              Math.random() *
-              (window.innerWidth -
-                document.getElementById("noButton").offsetWidth);
-            var y =
-              Math.random() *
-              (window.innerHeight -
-                document.getElementById("noButton").offsetHeight);
-            document.getElementById("noButton").style.left = `${x}px`;
-            document.getElementById("noButton").style.top = `${y}px`;
-          }
-        </script>
+<head>
+  <title>
+    Happy Valentine's Day!
+  </title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css" />
+  <script async src="./script.js"></script>
+  <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</head>
+
+<body>
+  <div>
+
+    <div>
+      <h1>
+        Will you be my valentine?
+      </h1>
+    </div>
+
+    <div class="gif-container">
+      <div class="tenor-gif-embed" data-postid="13441992" data-share-method="host" data-aspect-ratio="1.43231"
+        data-width="100%">
+        <a href="https://tenor.com/view/happy-valentines-day-my-love-anime-girl-gift-gif-13441992"></a>
       </div>
     </div>
-  </body>
+
+    <div class="buttons">
+      <button id="yes-button" onclick="nextPage()">
+        Yes
+      </button>
+      <button id="no-button" onmouseover="moveButton()" onclick="moveButton()">
+        No
+      </button>
+    </div>
+
+  </div>
+</body>
+
 </html>
